@@ -4,13 +4,12 @@ import React from "react"
 // Material
 import {
   AppBar,
-  Button,
   IconButton,
   makeStyles,
   Toolbar,
   Typography,
 } from "@material-ui/core"
-import { Menu } from "@material-ui/icons"
+import { AccountCircle, Menu } from "@material-ui/icons"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,25 +23,36 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export const UiNavbar = ({ label }) => {
+export const UiNavbar = ({ hasLoginButton, hasMenuButton, label }) => {
   const classes = useStyles()
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <Menu />
-          </IconButton>
+          {hasMenuButton && (
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <Menu />
+            </IconButton>
+          )}
           <Typography variant="h5" className={classes.title}>
             {label}
           </Typography>
-          <Button color="inherit">Login</Button>
+          {hasLoginButton && (
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
     </div>
