@@ -4,24 +4,18 @@ import React from "react"
 // Material
 import { Menu, MenuItem } from "@material-ui/core"
 
-export const UiMenu = ({ menuState }) => {
-  const [state, setState] = React.useState(menuState)
-
-  const handleClose = () => {
-    setState(false)
-  }
-
+export const UiMenu = ({ anchorEl, handleClose, menuItemList }) => {
   return (
     <Menu
       id="simple-menu"
-      anchorEl={state}
+      anchorEl={anchorEl}
       keepMounted
-      open={state}
+      open={Boolean(anchorEl)}
       onClose={handleClose}
     >
-      <MenuItem onClick={handleClose}>Profile</MenuItem>
-      <MenuItem onClick={handleClose}>My account</MenuItem>
-      <MenuItem onClick={handleClose}>Logout</MenuItem>
+      {menuItemList.map(item => (
+        <MenuItem key={item.id} onClick={item.handleClick}>{item.label}</MenuItem>
+      ))}
     </Menu>
   )
 }
