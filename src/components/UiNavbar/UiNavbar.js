@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     color: 'white',
-    margin: theme.spacing(2),
+    margin: theme.spacing(1),
     fontWeight: 'bold'
   },
   menuButton: {
