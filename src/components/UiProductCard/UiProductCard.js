@@ -1,53 +1,104 @@
 // React
 import React from "react"
 
-// Material
-import { Button, Card, CardActions, CardContent, makeStyles, Typography } from '@material-ui/core'
+// Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
+// Material
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Fab,
+  makeStyles,
+  Typography,
+} from "@material-ui/core"
 
 const useStyles = makeStyles({
-    card: {
-      minWidth: 275,
-    },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
-    },
-    title: {
-      fontSize: 14,
-    },
-    pos: {
-      marginBottom: 12,
-    },
-  });
+  card: {
+    minWidth: 275,
+    display: "flex",
+    flexFlow: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  content: {
+    margin: "auto",
+  },
+  cardActions: {
+    display: "flex",
+    flexFlow: "row",
+    justifyContent: "space-between",
+    width: "90%",
+  },
+  buttonIcon: {
+    paddingLeft: 10,
+  },
+  buttonTitle: {
+    fontSize: 12,
+    padding: "0px 10px",
+  },
+  media: {
+    maxHeight: 200,
+    width: "auto",
+  },
+})
 
-const UiProductCard = () => {
+const UiProductCard = ({
+  description,
+  handleClickAddToCart,
+  image,
+  price,
+  title,
+}) => {
   const classes = useStyles()
   return (
     <Card className={classes.card}>
-      <CardContent>
+      <CardMedia
+        className={classes.media}
+        component="img"
+        src={image}
+        title={title}
+      />
+      <CardContent className={classes.content}>
         <Typography
-          className={classes.title}
+          variant="h5"
+          component="h5"
           color="textSecondary"
           gutterBottom
         >
-          Word of the Day
+          {title}
         </Typography>
-        <Typography variant="h5" component="h2">
-          be nev lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
+
         <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          {description}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
+      <CardActions className={classes.cardActions}>
+        <Typography variant="body2" component="p">
+          {`R$ ${price}`}
+        </Typography>
+        <Fab
+          color="primary"
+          onClick={handleClickAddToCart}
+          size="small"
+          variant="extended"
+        >
+          <FontAwesomeIcon
+            className={classes.buttonIcon}
+            icon={faPlus}
+            size="sm"
+          />
+          <Typography
+            variant="button"
+            component="span"
+            className={classes.buttonTitle}
+          >
+            Add to Cart
+          </Typography>
+        </Fab>
       </CardActions>
     </Card>
   )
