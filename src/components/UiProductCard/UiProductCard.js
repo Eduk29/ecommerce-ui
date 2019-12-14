@@ -18,6 +18,7 @@ import {
 
 const useStyles = makeStyles({
   card: {
+    minHeight: 420,
     minWidth: 275,
     display: "flex",
     flexFlow: "column",
