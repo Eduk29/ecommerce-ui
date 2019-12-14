@@ -4,5 +4,5 @@ export { UiProductCard } from "./components/UiProductCard"
 export {
   Grid as UiGrid,
   Typography as UiTypography,
-  makeStyles as UiMakeStyles,
+  withStyles as UiWithStyles,
 } from "@material-ui/core"
